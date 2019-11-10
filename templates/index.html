@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>目标检测数据集标注工具</title>
+    <link type="favicon" rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    <!-- Bootstrap -->
+    <link href="/static/build/js/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/build/css/custom.css" rel="stylesheet">
+    <!-- <link href="/static/build/css/imagelabel.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1 img-side">
+            <button class="btn btn-default btn-lg" id="side_left" type="button" value="left"><span
+                    class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+        </div>
+        <div class="col-md-10 img-main" id="img">&nbsp;</div>
+        <div class="col-md-1 img-side">
+            <button class="btn btn-default btn-lg" id="side_right" type="button" value="right"><span
+                    class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button>
+        </div>
+    </div>
+    <div></div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" id="radio-type">标注类型：
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <span>样本总数：<strong id="total"></strong></span>
+            <input type="text" id="jump_page" value="" style="width:100px" placeholder="跳转到指定页"/>
+            <span>当前文件：<strong id="cur_id"></strong></span>
+            <span>坐标区域：<strong id="cur_loc"></strong></span>
+        </div>
+    </div>
+    <div  class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <span>当前样本标注状态：</span>
+            <textarea class="form-control" id="annotation_cur_status" rows="6"></textarea>
+        </div>
+        <div class="col-md-3">
+            <span>所有样本标注状态：</span>
+            <textarea class="form-control" id="annotation_total_status" rows="6"></textarea>
+        </div>
+        <div class="col-md-1">
+            <br/>
+            <button class="btn btn-default" id="btn_save" type="button">保存</button>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/static/build/js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="/static/build/js/layer-v3.1.1/layer/layer.js"></script>
+<script src="/static/build/js/custom.js"></script>
+<script src="/static/build/js/draw_roi.js"></script>
+<script type="text/javascript">
+  var sampleCount = "{{ sample_count }}";
+</script>
+</body>
+</html>

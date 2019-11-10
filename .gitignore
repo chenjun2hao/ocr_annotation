@@ -1,0 +1,7 @@
+.idea
+__pycache__/
+logs
+*.pid
+.vscode/
+docs/
+annotation/

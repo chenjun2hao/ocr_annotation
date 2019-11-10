@@ -1,0 +1,24 @@
+.img-side,.img-main{
+    height:600px;
+}
+.img-side button{
+    margin-top: 200px;
+}
+.box{
+    background-color:#f00;
+    opacity:0.5;
+    border:1px solid #53c3e4;
+
+}
+.box_label{
+    background:#000;
+    opacity:1;
+    /* color:#fff; */
+    color: chartreuse;
+    font-size:10px;
+}
+div {
+      -moz-user-select:none;
+      -webkit-user-select:none;
+      user-select:none;
+}
