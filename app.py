@@ -75,8 +75,31 @@ def get_labels():
         env_db = lmdb.Environment(sys_config.SAMPLE_LABLE_PATH)     # 读取数据库
         txn = env_db.begin()
         if txn.get(img_name.encode()) == None:          # 没有标注信息的时候，调取百度的api接口
+            # 标注信息返回的格式为：result['coor_label'] = result['coor_label'] = '10,10,150,150,chenjun'   //x1,y1,x2,y2
             result['coor_label'] = 'none'
-            # 标注信息返回的格式为：result['coor_label'] = result['coor_label'] = '10,10,150,150,chenjun'
+
+            # 调百度的api//如果误检的框多的话，还不如直接标注来的快
+            # request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general"
+            # # f = open('./dataset/images/─■A0C93F.jpg', 'rb')
+            # # img = base64.b64encode(f.read())
+            # img = result['img']
+
+            # params = {"image":img}
+            # access_token = '....'
+            # request_url = request_url + "?access_token=" + access_token
+            # headers = {'content-type': 'application/x-www-form-urlencoded'}
+            # response = requests.post(request_url, data=params, headers=headers)
+            # if response:
+            #     b = response.json()['words_result']
+            #     c = [[str(tb['location']['left']), 
+            #         str(tb['location']['top']), 
+            #         str(tb['location']['left']+tb['location']['width']), 
+            #         str(tb['location']['top']+tb['location']['height']),
+            #         tb['words']]for tb in b]
+            #     d = '\n'.join([','.join(tc) for tc in c])
+            #     result['coor_label'] = d
+            # else:
+            #     result['coor_label'] = 'none'
         else:                                           # 直接传回图片和以前的标注
             result['coor_label'] = txn.get(img_name.encode()).decode('utf-8')
         env_db.close()

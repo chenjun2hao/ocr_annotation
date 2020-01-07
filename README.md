@@ -18,10 +18,12 @@
 
 
 ## 使用方法
-1. 根据`requirements.txt`安装环境依赖
+1. 根据`requirements.txt`安装环境依赖，其中有些依赖可能没有使用，也可以装了相应python与flask版本后，根据报错安装其他依赖
 ```buildoutcfg
 $ cd od-annotation
-$ pip3 install -r requirements.txt
+$ pip3 install -r requirements.txt       # use pip
+# or create a new conda enviroment
+conda env create -f enviroment.yaml
 ```
 2. 将需要标注的图片放到：'dataset/images/'
 
@@ -31,11 +33,14 @@ $ cd od-annotation
 $ python3 app.py --start|stop|restart  # 前台进程方式运行
 $ python3 app.py --start|restart --daemon  # 以后台进程方式（重新）启动
 ```
-4. 访问`http://localhost:5000`开始标注。整个标注流程是：1.先调用百度api; 2.将百度的结果画出来，并调整； 3.保存结果/下一张。其中可以用左键移动矩形框，并可以在矩形框右下角进行大小调整。右键点击矩形框可以删除当前标注的矩形框。`当前样本标注状态`会同步更新标注信息。 `所有样本标注状态`用的原作者的，可能会有错误，没有关系。
+4. 访问`http://localhost:5000`开始标注。整个标注流程是：1.先调用百度api; 2.将百度的结果画出来，并调整； 3.保存结果/下一张。其中可以用左键移动矩形框，并可以在矩形框右下角进行大小调整。右键点击矩形框可以删除当前标注的矩形框。`当前样本标注状态`会同步更新标注信息。 `所有样本标注状态`用的原作者的，没有调整其显示，可能会有错误，没有关系。
 
 5. 点击左右方向按钮或通过键盘方向键切换标注样本。切换时自动提交标注结果，或手动点击`保存`按钮提交标注结果。
 
-6. 标注文件在`dataset/labels/`中，是lmdb数据库。标注格式为:`{'img_name': 'x1,y1,x2,y2,label\nx12,y12,x22,y22,label2\n'}`,标注的是左上和右下的坐标
+6. 标注文件在`dataset/labels/`中，是lmdb数据库。标注格式为:`{'img_name': 'x1,y1,x2,y2,label\nx12,y12,x22,y22,label2\n'}`,标注的一个矩形，采用左上和右下的坐标
+
+## 更改预训练API
+按同样的返回格式，修改[app.py](./app.py)中的第81行到102行
 
 
 ## reference

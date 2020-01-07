@@ -5,3 +5,5 @@ logs
 .vscode/
 docs/
 annotation/
+test.py 
+*.pyc
